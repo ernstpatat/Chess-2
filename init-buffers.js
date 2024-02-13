@@ -16,10 +16,10 @@ function initBuffers(gl) {
   
     // Now create an array of positions for the square.
     const positions = [
-        2.5, 2.5, 
-        -2.5, 2.5, 
-        2.5, -2.5, 
-        -2.5, -2.5
+        2.0, 2.5, 
+        -3, 2.5, 
+        2.0, -2.5, 
+        -3, -2.5
     ];
   
     // Now pass the list of positions into WebGL to build the
