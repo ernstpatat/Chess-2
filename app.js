@@ -27,13 +27,15 @@ function OnClick(e){
             }
         }
         if (AttackedPiece == 0) {
-            if (SelectedPiece.Piece == "Pawn" && SelectedPiece.Color == "White" && SelectedPiece.PieceLocation[0] == MouseLocation[0] && -1 < (SelectedPiece.PieceLocation[1] - MouseLocation[1]) && (SelectedPiece.PieceLocation[1] - MouseLocation[1]) < 3 || SelectedPiece.Piece == "Pawn" && SelectedPiece.Color == "Black" && SelectedPiece.PieceLocation[0] == MouseLocation[0] && -1 < (MouseLocation[1] - SelectedPiece.PieceLocation[1]) && (MouseLocation[1] - SelectedPiece.PieceLocation[1]) < 3 || SelectedPiece.Piece != "Pawn") {
+            if (SelectedPiece.Piece == "Pawn" && SelectedPiece.Color == "White" && SelectedPiece.PieceLocation[0] == MouseLocation[0] && -1 < (SelectedPiece.PieceLocation[1] - MouseLocation[1]) && (SelectedPiece.PieceLocation[1] - MouseLocation[1]) < 2 || SelectedPiece.Piece == "Pawn" && SelectedPiece.Color == "Black" && SelectedPiece.PieceLocation[0] == MouseLocation[0] && -1 < (MouseLocation[1] - SelectedPiece.PieceLocation[1]) && (MouseLocation[1] - SelectedPiece.PieceLocation[1]) < 2 || SelectedPiece.Piece == "Pawn" && SelectedPiece.Color == 'White' && MouseLocation[0] == SelectedPiece.PieceLocation[0] && MouseLocation[1] == SelectedPiece.PieceLocation[1]-2 || SelectedPiece.Piece == "Pawn" && SelectedPiece.Color == 'Black' && MouseLocation[0] == SelectedPiece.PieceLocation[0] && MouseLocation[1] == SelectedPiece.PieceLocation[1]+2 || SelectedPiece.Piece == "Rook" && SelectedPiece.PieceLocation[0] == MouseLocation[0] || SelectedPiece.Piece == "Rook" && SelectedPiece.PieceLocation[1] == MouseLocation[1] || SelectedPiece.Piece == "Knight" && Math.abs(MouseLocation[0] - SelectedPiece.PieceLocation[0]) == 2 && Math.abs(MouseLocation[1] - SelectedPiece.PieceLocation[1]) == 1 || SelectedPiece.Piece == "Knight" && Math.abs(MouseLocation[0] - SelectedPiece.PieceLocation[0]) == 1 && Math.abs(MouseLocation[1] - SelectedPiece.PieceLocation[1]) == 2 || SelectedPiece.Piece == "Bishop" && Math.abs(MouseLocation[0] - SelectedPiece.PieceLocation[0]) == Math.abs(MouseLocation[1] - SelectedPiece.PieceLocation[1]) || SelectedPiece.Piece == "Queen" && (SelectedPiece.PieceLocation[0] == MouseLocation[0] || SelectedPiece.PieceLocation[1] == MouseLocation[1] || Math.abs(MouseLocation[0] - SelectedPiece.PieceLocation[0]) == Math.abs(MouseLocation[1] - SelectedPiece.PieceLocation[1])) || SelectedPiece.Piece == "King" && (Math.abs(MouseLocation[0] - SelectedPiece.PieceLocation[0]) <= 1 && Math.abs(MouseLocation[1] - SelectedPiece.PieceLocation[1]) <= 1)) {
                 SelectedPiece.PieceLocation = MouseLocation
             }
         }
         if (AttackedPiece != 0 && AttackedPiece.Color != SelectedPiece.Color) {
-            SelectedPiece.PieceLocation = MouseLocation
-            Pieces.splice(AttackedPieceLocation, 1)
+            if (SelectedPiece.Piece == "Pawn" && SelectedPiece.Color == "White" && Math.abs(SelectedPiece.PieceLocation[0] - MouseLocation[0]) == 1 && SelectedPiece.PieceLocation[1] - MouseLocation[1] == 1 || SelectedPiece.Piece == "Pawn" && SelectedPiece.Color == "Black" && Math.abs(SelectedPiece.PieceLocation[0] - MouseLocation[0]) == 1 && MouseLocation[1] - SelectedPiece.PieceLocation[1] == 1 || SelectedPiece.Piece == "Rook" && SelectedPiece.PieceLocation[0] == MouseLocation[0] || SelectedPiece.Piece == "Rook" && SelectedPiece.PieceLocation[1] == MouseLocation[1] || SelectedPiece.Piece == "Knight" && Math.abs(MouseLocation[0] - SelectedPiece.PieceLocation[0]) == 2 && Math.abs(MouseLocation[1] - SelectedPiece.PieceLocation[1]) == 1 || SelectedPiece.Piece == "Knight" && Math.abs(MouseLocation[0] - SelectedPiece.PieceLocation[0]) == 1 && Math.abs(MouseLocation[1] - SelectedPiece.PieceLocation[1]) == 2 || SelectedPiece.Piece == "Bishop" && Math.abs(MouseLocation[0] - SelectedPiece.PieceLocation[0]) == Math.abs(MouseLocation[1] - SelectedPiece.PieceLocation[1]) || SelectedPiece.Piece == "Queen" && (SelectedPiece.PieceLocation[0] == MouseLocation[0] || SelectedPiece.PieceLocation[1] == MouseLocation[1] || Math.abs(MouseLocation[0] - SelectedPiece.PieceLocation[0]) == Math.abs(MouseLocation[1] - SelectedPiece.PieceLocation[1])) || SelectedPiece.Piece == "King" && (Math.abs(MouseLocation[0] - SelectedPiece.PieceLocation[0]) <= 1 && Math.abs(MouseLocation[1] - SelectedPiece.PieceLocation[1]) <= 1)) {
+                SelectedPiece.PieceLocation = MouseLocation
+                Pieces.splice(AttackedPieceLocation, 1)
+            }
         }
         Redrawing = true
         SelectedPiece = 0
@@ -116,3 +118,4 @@ function update(){
 
 }
 update()
+
