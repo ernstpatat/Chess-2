@@ -18,13 +18,16 @@ function OnClick(e){
         }
     } else {
         MouseLocation = [(((e.clientX-8)-(e.clientX-8)%100)/100)+1,(((e.clientY-8)-(e.clientY-8)%100)/100)+1]
+        DoNotMove = false
         for (let i = 0; i < Pieces.length; i++) {
             const piece = Pieces[i]
-            if (piece.PieceLocation[0] == MouseLocation[0] && piece.PieceLocation[1] == MouseLocation[1]) {
+            if (piece.PieceLocation[0] == MouseLocation[0] && piece.PieceLocation[1] == MouseLocation[1] && piece.Color != SelectedPiece.Color) {
                 Pieces.splice(i, 1)
+            } else {
+                if (piece.PieceLocation[0] == MouseLocation[0] && piece.PieceLocation[1] == MouseLocation[1] && piece.Color == SelectedPiece.Color) DoNotMove = true
             }
         }
-        SelectedPiece.PieceLocation = MouseLocation
+        if (!DoNotMove) SelectedPiece.PieceLocation = MouseLocation
         Redrawing = true
         SelectedPiece = 0
         update()
