@@ -3,6 +3,7 @@ const ctx = canvas.getContext("2d");
 i = 0
 j = 0
 SelectedPiece = 0
+AttackedPiece = 0
 Redrawing = false
 
 ctx.fillRect(0, 0, 1000, 800)
@@ -18,18 +19,25 @@ function OnClick(e){
         }
     } else {
         MouseLocation = [(((e.clientX-8)-(e.clientX-8)%100)/100)+1,(((e.clientY-8)-(e.clientY-8)%100)/100)+1]
-        DoNotMove = false
         for (let i = 0; i < Pieces.length; i++) {
             const piece = Pieces[i]
-            if (piece.PieceLocation[0] == MouseLocation[0] && piece.PieceLocation[1] == MouseLocation[1] && piece.Color != SelectedPiece.Color) {
-                Pieces.splice(i, 1)
-            } else {
-                if (piece.PieceLocation[0] == MouseLocation[0] && piece.PieceLocation[1] == MouseLocation[1] && piece.Color == SelectedPiece.Color) DoNotMove = true
+            if (piece.PieceLocation[0] == MouseLocation[0] && piece.PieceLocation[1] == MouseLocation[1]) {
+                AttackedPiece = piece
+                AttackedPieceLocation = i
             }
         }
-        if (!DoNotMove) SelectedPiece.PieceLocation = MouseLocation
+        if (AttackedPiece == 0) {
+            if (SelectedPiece.Piece == "Pawn" && SelectedPiece.Color == "White" && SelectedPiece.PieceLocation[0] == MouseLocation[0] && -1 < (SelectedPiece.PieceLocation[1] - MouseLocation[1]) && (SelectedPiece.PieceLocation[1] - MouseLocation[1]) < 3 || SelectedPiece.Piece == "Pawn" && SelectedPiece.Color == "Black" && SelectedPiece.PieceLocation[0] == MouseLocation[0] && -1 < (MouseLocation[1] - SelectedPiece.PieceLocation[1]) && (MouseLocation[1] - SelectedPiece.PieceLocation[1]) < 3 || SelectedPiece.Piece != "Pawn") {
+                SelectedPiece.PieceLocation = MouseLocation
+            }
+        }
+        if (AttackedPiece != 0 && AttackedPiece.Color != SelectedPiece.Color) {
+            SelectedPiece.PieceLocation = MouseLocation
+            Pieces.splice(AttackedPieceLocation, 1)
+        }
         Redrawing = true
         SelectedPiece = 0
+        AttackedPiece = 0
         update()
     }
 }
