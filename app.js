@@ -12,25 +12,25 @@ function ChessPiece(X, Y, Piece, Color) {
     this.Piece = Piece
     this.Color = Color
     this.Image = new Image()
-    this.Image.src = 'Assets/' + this.Piece + '.png'
+    this.Image.src = 'Assets/' + this.Piece + this.Color +'.png'
 }
 
-Pawn1 = new ChessPiece(1, 2, "Pawn", "White")
-Pawn2 = new ChessPiece(2, 2, "Pawn", "White")
-Pawn3 = new ChessPiece(3, 2, "Pawn", "White")
-Pawn4 = new ChessPiece(4, 2, "Pawn", "White")
-Pawn5 = new ChessPiece(5, 2, "Pawn", "White")
-Pawn6 = new ChessPiece(6, 2, "Pawn", "White")
-Pawn7 = new ChessPiece(7, 2, "Pawn", "White")
-Pawn8 = new ChessPiece(8, 2, "Pawn", "White")
-Pawn9 = new ChessPiece(1, 7, "Pawn", "Black")
-Pawn10 = new ChessPiece(2, 7, "Pawn", "Black")
-Pawn11 = new ChessPiece(3, 7, "Pawn", "Black")
-Pawn12 = new ChessPiece(4, 7, "Pawn", "Black")
-Pawn13 = new ChessPiece(5, 7, "Pawn", "Black")
-Pawn14 = new ChessPiece(6, 7, "Pawn", "Black")
-Pawn15 = new ChessPiece(7, 7, "Pawn", "Black")
-Pawn16 = new ChessPiece(8, 7, "Pawn", "Black")
+Pawn1 = new ChessPiece(1, 2, "Pawn", "Black")
+Pawn2 = new ChessPiece(2, 2, "Pawn", "Black")
+Pawn3 = new ChessPiece(3, 2, "Pawn", "Black")
+Pawn4 = new ChessPiece(4, 2, "Pawn", "Black")
+Pawn5 = new ChessPiece(5, 2, "Pawn", "Black")
+Pawn6 = new ChessPiece(6, 2, "Pawn", "Black")
+Pawn7 = new ChessPiece(7, 2, "Pawn", "Black")
+Pawn8 = new ChessPiece(8, 2, "Pawn", "Black")
+Pawn9 = new ChessPiece(1, 7, "Pawn", "White")
+Pawn10 = new ChessPiece(2, 7, "Pawn", "White")
+Pawn11 = new ChessPiece(3, 7, "Pawn", "White")
+Pawn12 = new ChessPiece(4, 7, "Pawn", "White")
+Pawn13 = new ChessPiece(5, 7, "Pawn", "White")
+Pawn14 = new ChessPiece(6, 7, "Pawn", "White")
+Pawn15 = new ChessPiece(7, 7, "Pawn", "White")
+Pawn16 = new ChessPiece(8, 7, "Pawn", "White")
 Rook1 = new ChessPiece(1, 1, "Rook", "Black")
 Rook2 = new ChessPiece(8, 1, "Rook", "Black")
 Rook3 = new ChessPiece(1, 8, "Rook", "White")
@@ -66,7 +66,7 @@ function update(){
     for (let i = 0; i < Pieces.length; i++) {
         const piece = Pieces[i];
         piece.Image.onload = function(){
-            ctx.drawImage(piece.Image, (piece.X - 1) * 100 + 5, (piece.Y - 1) * 100 + 5)
+            ctx.drawImage(piece.Image, (piece.X - 1) * 100, (piece.Y - 1) * 100)
         }
     }
     update()
