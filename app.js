@@ -16,12 +16,15 @@ function OnClick(e){
                 SelectedPiece = piece
             }
         }
-        console.log(SelectedPiece)
     } else {
         MouseLocation = [(((e.clientX-8)-(e.clientX-8)%100)/100)+1,(((e.clientY-8)-(e.clientY-8)%100)/100)+1]
+        for (let i = 0; i < Pieces.length; i++) {
+            const piece = Pieces[i]
+            if (piece.PieceLocation[0] == MouseLocation[0] && piece.PieceLocation[1] == MouseLocation[1]) {
+                Pieces.splice(i, 1)
+            }
+        }
         SelectedPiece.PieceLocation = MouseLocation
-        console.log(SelectedPiece.PieceLocation)
-        console.log(Pawn2.PieceLocation)
         Redrawing = true
         SelectedPiece = 0
         update()
@@ -88,23 +91,17 @@ function update(){
         i += 1
     }
 
-    console.log("Updating")
     i = 0
-    console.log(i)
-    console.log(Pieces.length)
     while (i < Pieces.length) {
-        console.log("drawing")
         let piece2 = Pieces[i]
         if (Redrawing) ctx.drawImage(piece2.Image, (piece2.PieceLocation[0] - 1) * 100, (piece2.PieceLocation[1] - 1) * 100)
         piece2.Image.onload = function(){
             ctx.drawImage(piece2.Image, (piece2.PieceLocation[0] - 1) * 100, (piece2.PieceLocation[1] - 1) * 100)
-        console.log(piece2 + "drawn")
         }
         i += 1
     }
     i = 0
     j = 0
 
-    console.log("Updated")
 }
 update()
