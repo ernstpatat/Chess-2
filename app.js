@@ -144,9 +144,9 @@ function update(){
     while (i < 8) {
         j = 0
         while (j < 8) {
-            ctx.fillStyle = "ForestGreen"
+            ctx.fillStyle = "White"
             if (i % 2 == 0 && j % 2 == 0 || i % 2 != 0 && j % 2 != 0) [ctx.fillRect(i*100, j*100, 100, 100)]
-            ctx.fillStyle = "white"
+            ctx.fillStyle = "ForestGreen"
             if (i % 2 == 0 && j % 2 != 0 || i % 2 != 0 && j % 2 == 0) [ctx.fillRect(i*100, j*100, 100, 100)]
             j += 1
         }
